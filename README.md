@@ -2,8 +2,8 @@ phpSANE-gs is a web-based frontend for SANE written in HTML/PHP so you can scan 
 
 This is a fork of [gawindx/phpSane](https://github.com/gawindx/phpSane). phpSANE-gs uses Ghostscript instead of Poppler to process PDFs, allowing pages to be more reliably merged (this fixes the blank pages issue) and enabling highly efficient compression of the output files.
 
-[![Screen Shot 1](https://github.com/albino/phpSANE/blob/master/images/phpSane_Screenshot_1.png)](https://github.com/albino/phpSANE)
-[![Screen Shot 2](https://github.com/albino/phpSANE/blob/master/images/phpSane_Screenshot_2.png)](https://github.com/albino/phpSANE)
+[![Screen Shot 1](https://github.com/albino/phpSANE-gs/blob/master/images/phpSane_Screenshot_1.png)](https://github.com/albino/phpSANE-gs)
+[![Screen Shot 2](https://github.com/albino/phpSANE-gs/blob/master/images/phpSane_Screenshot_2.png)](https://github.com/albino/phpSANE-gs)
 
 ## Important licensing info
 
