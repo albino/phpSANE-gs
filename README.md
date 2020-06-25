@@ -1,8 +1,15 @@
-phpSANE is a web-based frontend for SANE written in HTML/PHP so you can scan with your web-browser. It also supports OCR.  
-It's forked from [SourceForge phpSane](https://sourceforge.net/projects/phpsane/)
+phpSANE-gs is a web-based frontend for SANE written in HTML/PHP so you can scan with your web-browser. It also supports OCR.
 
-[![Screen Shot 1](https://github.com/gawindx/phpSane/blob/master/images/phpSane_Screenshot_1.png)](https://github.com/gawindx/phpSane)
-[![Screen Shot 2](https://github.com/gawindx/phpSane/blob/master/images/phpSane_Screenshot_2.png)](https://github.com/gawindx/phpSane)
+This is a fork of [gawindx/phpSane](https://github.com/gawindx/phpSane). phpSANE-gs uses Ghostscript instead of Poppler to process PDFs, allowing pages to be more reliably merged (this fixes the blank pages issue) and enabling highly efficient compression of the output files.
+
+[![Screen Shot 1](https://github.com/albino/phpSANE/blob/master/images/phpSane_Screenshot_1.png)](https://github.com/albino/phpSANE)
+[![Screen Shot 2](https://github.com/albino/phpSANE/blob/master/images/phpSane_Screenshot_2.png)](https://github.com/albino/phpSANE)
+
+## Important licensing info
+
+This software depends on Ghostscript, which is licensed under the GNU Affero General Public License (AGPL). Because no AGPL-licensed code is distributed with phpSANE-gs, and the GPLv2 license under which the original phpSANE code was distributed is not compatible with the AGPLv3, phpSANE-gs is licensed under the GNU GPLv2. **However, if you install this software in tandem with Ghostscript, you are required to comply with the terms of the AGPL.**
+
+What this means in practice is that if you run the software, you are responsible for making a copy of the source code available to its users. A link to this Git repository and the [Ghostscript download page](https://www.ghostscript.com/download/gsdnld.html) should suffice.
 
 ## Installing phpSANE on FreeBSD
 
