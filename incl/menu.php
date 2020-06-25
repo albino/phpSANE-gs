@@ -151,6 +151,20 @@ if($do_file_name) {
 	</tr>";
 }
 
+if($do_compression_opt) {
+	// TODO: l8n
+	echo "
+	<tr>
+		<td>Compress PDFs</td>
+		<td class='value_column'><input type='checkbox' value='yes' name='use_compression'";
+	if ($_POST["use_compression"] == "yes") {
+		echo "checked";
+	}
+	echo "></td>
+		<td class='unit_column'></td>
+	</tr>";
+}
+
 if($do_btn_reset || $do_btn_clean) {
 	echo "
 	<tr>

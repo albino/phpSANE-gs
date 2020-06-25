@@ -37,8 +37,7 @@ $SCAN_NET_SETUP = '';
 // 6 = french
 // 7 = dutch
 // 8 = czech
-//$lang_id = 1;
-$lang_id = 6;
+$lang_id = 1;
 
 
 // set your scanner maximum page size, and a low dpi for previews
@@ -87,7 +86,8 @@ $do_brightness			= true;
 $do_contrast			= true;
 $do_source				= true;
 $do_usr_opt				= false;
-$do_file_name			= false;
+$do_file_name			= true;
+$do_compression_opt		= true;
 $do_append_pdf			= true;
 $do_append_txt			= true;
 $do_lang_toggle			= true;
@@ -113,7 +113,7 @@ $do_format_pdf			= true;
 // =============
 $SCANIMAGE	= "/usr/bin/scanimage";	//scanimage binary (sane)
 $GOCR		= "/usr/bin/gocr";		//optional ocr binary
-$PDFUNITE	= "/usr/bin/pdfunite";	//optional PDF merge binary
+$GHOSTSCRIPT    = "/usr/bin/gs";
 $PNMTOJPEG	= "/usr/bin/pnmtojpeg";	//netpbm pnm to jpeg conversion binary
 $PNMTOTIFF	= "/usr/bin/pnmtotiff";	//netpbm pnm to tiff conversion binary
 $PNMTOBMP	= "/usr/bin/ppmtobmp";	//netpbm ppm to bmp conversion binary
@@ -124,7 +124,8 @@ if(php_uname('s') == 'FreeBSD') {
 	//FreeBSD
 	$SCANIMAGE	= "/usr/local/bin/scanimage";
 	$GOCR		= "/usr/local/bin/gocr";
-	$PDFUNITE	= "/usr/local/bin/pdfunite";
+//	$PDFUNITE	= "/usr/local/bin/pdfunite";
+	$GHOSTSCRIPT    = "/usr/local/bin/ghostscript";
 	$PNMTOJPEG	= "/usr/bin/pnmtojpeg";
 	$PNMTOTIFF	= "/usr/local/bin/pnmtotiff";
 	$PNMTOBMP	= "/usr/local/bin/ppmtobmp";

@@ -143,20 +143,8 @@ if ($error_input == 0){
 			$cmd_device = $cmd_scan." | {$PNMTOPNG} > '$file_save'";
 		}
 		if ( ($format == "pdf") && ($source =="ADF")){
-			//$cmd_device = $cmd_scan." | {$CONVERT} pnm:- -compress jpeg -quality 100 -density {$resolution} pdf:- > \"".$file_save."\"";
-			/*
-			Bugfix:
-			convert: unable to read image data `-' @ error/pnm.c/ReadPNMImage/766.
-			convert: no images defined `pdf:-' @ error/convert.c/ConvertImageCommand/3044.
-			*/
-			$cmd_device = $cmd_scan." && {$CONVERT} '{$temp_dir}out*.tif' -compress jpeg -quality 90 -density {$resolution} pdf:- > '$file_save'";
+			$cmd_device = $cmd_scan." && {$CONVERT} '{$temp_dir}out*.tif' -compress jpeg -quality 100 -density {$resolution} pdf:- > '$file_save'";
 		}elseif ($format == "pdf"){
-			//$cmd_device = $cmd_scan." | {$CONVERT} pnm:- -compress jpeg -quality 100 -density {$resolution} pdf:- > \"".$file_save."\"";
-			/*
-			Bugfix:
-			convert: unable to read image data `-' @ error/pnm.c/ReadPNMImage/766.
-			convert: no images defined `pdf:-' @ error/convert.c/ConvertImageCommand/3044.
-			*/
 			$cmd_device = $cmd_scan." | {$CONVERT} - -compress jpeg -quality 100 -density {$resolution} pdf:- > '$file_save'";
 		}
 		if ( ($format == "txt") && ($source =="ADF")){
@@ -186,6 +174,16 @@ if ($cmd_device !== '') {
 	$cmd_device = $lang[$lang_id][39];
 }
 
+if ($format == "pdf" && $_POST['use_compression'] == "yes" && $action_save) {
+	//apply PDF postprocessing
+	$new_file_save = preg_replace("/\\.$format$/", "", $file_save)."_compressed.$format";
+
+	exec("$GHOSTSCRIPT -dBATCH -dNOPAUSE -dQUIET -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dCompatibilityLevel=1.6 -sOutputFile='$new_file_save' '$file_save'");
+	unlink($file_save);
+	$file_save = $new_file_save;
+
+}
+
 //merge files
 if ($action_save && $append_file !== '') {
 	$escaped_file_save = str_replace(" ", "\\ ", $file_save);
@@ -193,7 +191,7 @@ if ($action_save && $append_file !== '') {
 
 	if ($format == "pdf" && $do_append_pdf) {
 		//merge pdf files
-		exec("$PDFUNITE $escaped_append_file $escaped_file_save {$escaped_append_file}_new");
+		exec("$GHOSTSCRIPT -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dCompatibilityLevel=1.6 -sOutputFile={$escaped_append_file}_new $escaped_append_file $escaped_file_save");
 		exec("rm -f $escaped_append_file $escaped_file_save");
 		exec("mv {$escaped_append_file}_new $escaped_append_file");
 	} else if ($format == "txt" && $do_append_txt) {
@@ -224,4 +222,5 @@ if ($action_clean_output) {
 	$cmd_clean='rm -f '.$save_dir.'*';
 	exec($cmd_clean);
 }
+
 ?>
